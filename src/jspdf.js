@@ -2728,13 +2728,18 @@ function jsPDF(options) {
       height = format[1];
     }
 
-    if (width > 14400 || height > 14400) {
-      console.warn(
-        "A page in a PDF can not be wider or taller than 14400 userUnit. jsPDF limits the width/height to 14400"
-      );
-      width = Math.min(14400, width);
-      height = Math.min(14400, height);
-    }
+    /**
+     * Note: Beginning with PDF 1.6 the maximum page size increased to 15,000,000x15,000,000 units
+     * https://opensource.adobe.com/dc-acrobat-sdk-docs/pdfstandards/pdfreference1.7old.pdf
+     * Page 1128, 177
+     */
+    // if (width > 14400 || height > 14400) {
+    //   console.warn(
+    //     "A page in a PDF can not be wider or taller than 14400 userUnit. jsPDF limits the width/height to 14400"
+    //   );
+    //   width = Math.min(14400, width);
+    //   height = Math.min(14400, height);
+    // }
 
     format = [width, height];
 
